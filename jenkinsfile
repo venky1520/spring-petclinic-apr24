@@ -3,7 +3,7 @@ pipeline {
 	stages	{
 		stage	('git')	{
 			steps	{
-				git url:	'https://github.com/venky1520/spring-petclinic-apr24/blob/main/jenkinsfile',	branch:		'main'	
+				git url: 'https://github.com/venky1520/spring-petclinic-apr24.git', branch: 'main'	
 			}
 		}
 		stage (	'build'	)	{
@@ -11,8 +11,6 @@ pipeline {
 				sh 'mvn clean package'
 				junit testResults: '**/surefire-reports/*.xml'
 				archive '**/target/spring-petclinic-*.jar'
-				mail bcc: '', body: 'Build completed', cc: '', from: '', replyTo: '', subject: 'Build completed', to: 'all@learningthoughts.io'
-			}
 		}
 	}
 }
