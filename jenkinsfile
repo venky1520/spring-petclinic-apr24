@@ -11,6 +11,7 @@ pipeline {
 				sh 'mvn clean package'
 				junit testResults: '**/surefire-reports/*.xml'
 				archive '**/target/spring-petclinic-*.jar'
+                                mail bcc: '', body: 'Build completed', cc: '', from: '', replyTo: '', subject: 'Build completed', to: 'all@learningthoughts.io'
 		}
 	}
 }
